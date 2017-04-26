@@ -1,7 +1,11 @@
 package org.usfirst.frc.team810.robot;
 
+import org.usfirst.frc.team810.robot.commands.Drive;
+import org.usfirst.frc.team810.robot.commands.PushPiston;
+
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -37,7 +41,20 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	public static Joystick dan;
+	public static JoystickButton slowDrive_bn;
+	public static JoystickButton intake_bn;
+	public static JoystickButton rollersOut_bn;
+	public static JoystickButton push_bn;
+	
 	public OI(){
 		dan = new Joystick(PortNumber.DRIVE_JOYSTICK); 
+		slowDrive_bn = new JoystickButton(dan, 8);
+		slowDrive_bn.whileHeld(new Drive(.5));
+		
+		intake_bn = new JoystickButton(dan, 5);
+		rollersOut_bn = new JoystickButton(dan, 7);
+		push_bn = new JoystickButton(dan, 2);
+		
+		SmartDashboard.putData("Push", new PushPiston());
 	}
 }

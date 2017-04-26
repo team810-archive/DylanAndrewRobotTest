@@ -7,11 +7,12 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class DriveTrain extends Subsystem {
-	private RobotDrive drive = RobotMap.robotDrive;
+	private RobotDrive drive;
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
-		setDefaultCommand(new Drive());
+		setDefaultCommand(new Drive(1));
+		drive = RobotMap.robotDrive;
 		
 	}
 	

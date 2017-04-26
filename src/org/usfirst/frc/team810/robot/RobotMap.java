@@ -1,6 +1,10 @@
 package org.usfirst.frc.team810.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -19,7 +23,23 @@ public class RobotMap {
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
 	public static RobotDrive robotDrive;
+	public static Spark leftSpark;
+	public static Spark rightSpark;
+	
+	public static DoubleSolenoid solenoid;
+	public static Compressor compressor;
+	
 	public static void init(){
-		robotDrive = new RobotDrive(PortNumber.LEFT_MOTOR_CHANNEL, PortNumber.RIGHT_MOTOR_CHANNEL);
+		leftSpark = new Spark(PortNumber.LEFT_MOTOR_CHANNEL);
+		rightSpark = new Spark(PortNumber.RIGHT_MOTOR_CHANNEL);
+		robotDrive = new RobotDrive(leftSpark, rightSpark);
+		
+		LiveWindow.addActuator("Drive", "Right Motor", rightSpark);
+		LiveWindow.addActuator("Drive", "Left Motor", leftSpark);
+		
+		solenoid = new DoubleSolenoid(PortNumber.PCM_MODULE_NUMBER, PortNumber.SOLENOID_FORWARD_CHANNEL, PortNumber.SOLENOID_REVERSE_CHANNEL);
+		LiveWindow.addActuator("Pneumatics", "Solenoid", solenoid);
+		
+		compressor = new Compressor(PortNumber.PCM_MODULE_NUMBER);
 	}
 }

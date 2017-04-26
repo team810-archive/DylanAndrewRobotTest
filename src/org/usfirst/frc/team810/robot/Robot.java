@@ -20,7 +20,7 @@ import org.usfirst.frc.team810.robot.subsystems.ExampleSubsystem;
  */
 public class Robot extends IterativeRobot {
 
-	public static final DriveTrain driveTrain = new DriveTrain();
+	public static DriveTrain driveTrain;
 	public static OI oi;
 
 	Command autonomousCommand;
@@ -32,6 +32,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		RobotMap.init();
+		driveTrain = new DriveTrain();
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 	}

@@ -7,8 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class Drive extends Command {
 	private DriveTrain d = Robot.driveTrain;
-	public Drive(){
+	private double driveMultiplier;
+	
+	public Drive(double speedMult){
 		requires(Robot.driveTrain);
+		driveMultiplier = speedMult;
 	}
 
 	@Override
@@ -18,16 +21,19 @@ public class Drive extends Command {
 	}
 	
 	protected void execute(){
-		double dan_x = Robot.oi.dan.getX();
-		double dan_y = Robot.oi.dan.getY();
+		double dan_left = Robot.oi.dan.getRawAxis(1);
+		double dan_right = Robot.oi.dan.getRawAxis(3);
 		//double dan_z = Robot.oi.dan.getZ();
 		
-		if (Math.abs(dan_x) < .25)
-			dan_x = 0;
-		if (Math.abs(dan_y) < .25)
-			dan_y = 0;
+		if (Math.abs(dan_left) < .25)
+			dan_left = 0;
+		if (Math.abs(dan_right) < .25)
+			dan_right = 0;
 		
-		d.danddyTankDrive(dan_x, dan_y);
+		dan_left  *= driveMultiplier;
+		dan_right *= driveMultiplier;
+		
+		d.danddyTankDrive(-dan_left, -dan_right);
 		
 	}
 
