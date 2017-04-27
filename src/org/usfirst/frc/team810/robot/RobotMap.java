@@ -1,5 +1,8 @@
 package org.usfirst.frc.team810.robot;
 
+import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -29,6 +32,8 @@ public class RobotMap {
 	public static DoubleSolenoid solenoid;
 	public static Compressor compressor;
 	
+	public static CANTalon rollers;
+	
 	public static void init(){
 		leftSpark = new Spark(PortNumber.LEFT_MOTOR_CHANNEL);
 		rightSpark = new Spark(PortNumber.RIGHT_MOTOR_CHANNEL);
@@ -41,5 +46,8 @@ public class RobotMap {
 		LiveWindow.addActuator("Pneumatics", "Solenoid", solenoid);
 		
 		compressor = new Compressor(PortNumber.PCM_MODULE_NUMBER);
+		
+		rollers = new CANTalon(PortNumber.ROLLER);
+		rollers.changeControlMode(TalonControlMode.Speed);
 	}
 }

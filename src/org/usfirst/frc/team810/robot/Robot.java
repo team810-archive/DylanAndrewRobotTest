@@ -1,15 +1,14 @@
 
 package org.usfirst.frc.team810.robot;
 
+import org.usfirst.frc.team810.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team810.robot.subsystems.Rollers;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team810.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team810.robot.subsystems.ExampleSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,6 +21,7 @@ public class Robot extends IterativeRobot {
 
 	public static DriveTrain driveTrain;
 	public static OI oi;
+	public static Rollers rollers;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -34,6 +34,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		RobotMap.init();
 		driveTrain = new DriveTrain();
+		rollers = new Rollers();
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 	}

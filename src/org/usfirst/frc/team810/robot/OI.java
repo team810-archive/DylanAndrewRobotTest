@@ -1,7 +1,9 @@
 package org.usfirst.frc.team810.robot;
 
 import org.usfirst.frc.team810.robot.commands.Drive;
+import org.usfirst.frc.team810.robot.commands.Fire;
 import org.usfirst.frc.team810.robot.commands.PushPiston;
+import org.usfirst.frc.team810.robot.commands.RetractPiston;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -55,6 +57,12 @@ public class OI {
 		rollersOut_bn = new JoystickButton(dan, 7);
 		push_bn = new JoystickButton(dan, 2);
 		
+		initDashboardButtons();
+	}
+	
+	private void initDashboardButtons() {
 		SmartDashboard.putData("Push", new PushPiston());
+		SmartDashboard.putData("Retract", new RetractPiston());
+		SmartDashboard.putData("Fire", new Fire());
 	}
 }

@@ -13,7 +13,7 @@ public class Pneumatics extends Subsystem{
 		
 	}
 	
-	public void setPiston(boolean state) {
+	public static void setPiston(boolean state) {
 		if (state)
 			RobotMap.solenoid.set(Value.kForward);
 		else
